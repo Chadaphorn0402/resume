@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState , useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { BiSolidHome } from 'react-icons/bi';
 import { MdLibraryBooks } from 'react-icons/md';
@@ -35,6 +35,7 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { IoMenu } from "react-icons/io5";
 
 // import Head from 'next/head'; 
+import 'intersection-observer';
 
 const App = () => {
   return (
@@ -50,6 +51,69 @@ const Resume = () => {
   const [activeTab, setActiveTab] = useState('/');
   const [starsFall, setStarsFall] = useState([]);
 
+  const animatedRef1 = useRef(null);
+  const animatedRef2 = useRef(null);
+  const animatedRef3 = useRef(null);
+  const animatedRef4 = useRef(null);
+
+  const [animate1, setAnimate1] = useState(false);
+  const [animate2, setAnimate2] = useState(false);
+  const [animate3, setAnimate3] = useState(false);
+  const [animate4, setAnimate4] = useState(false);
+
+  useEffect(() => {
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        switch (entry.target) {
+          case animatedRef1.current:
+            setAnimate1(entry.isIntersecting);
+            break;
+          case animatedRef2.current:
+            setAnimate2(entry.isIntersecting);
+            break;
+          case animatedRef3.current:
+            setAnimate3(entry.isIntersecting);
+            break;
+          case animatedRef4.current:
+            setAnimate4(entry.isIntersecting);
+            break;
+          default:
+            break;
+        }
+      });
+    };
+
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5, // Adjust this threshold as needed
+    };
+
+    const observer1 = new IntersectionObserver(callback, options);
+    const observer2 = new IntersectionObserver(callback, options);
+    const observer3 = new IntersectionObserver(callback, options);
+    const observer4 = new IntersectionObserver(callback, options);
+
+    if (animatedRef1.current) {
+      observer1.observe(animatedRef1.current);
+    }
+    if (animatedRef2.current) {
+      observer2.observe(animatedRef2.current);
+    }
+    if (animatedRef3.current) {
+      observer3.observe(animatedRef3.current);
+    }
+    if (animatedRef4.current) {
+      observer4.observe(animatedRef4.current);
+    }
+
+    return () => {
+      observer1.disconnect();
+      observer2.disconnect();
+      observer3.disconnect();
+      observer4.disconnect();
+    };
+  }, [animatedRef1, animatedRef2, animatedRef3, animatedRef4]);
 
 
   const generateRandomPosition = () => ({
@@ -60,7 +124,7 @@ const Resume = () => {
   const stars = Array.from({ length: 200 }, (_, index) => index + 1);
 
   useEffect(() => {
-    const initialStarsFall = Array.from({ length: 50 }, (_, index) => ({
+    const initialStarsFall = Array.from({ length: 5 }, (_, index) => ({
       id: index,
       ...generateRandomPosition(),
     }));
@@ -187,7 +251,7 @@ const Resume = () => {
         className="animated-image absolute"
       /> */}
 
-      <div className="top-0 left-0 w-full md:h-[3000px] h-[3500px] pointer-events-none absolute z-0">
+      <div className="top-0 left-0 w-full md:h-[3700px] h-[3800px] pointer-events-none absolute z-0">
         {stars.map((star, index) => (
           <div
             key={star}
@@ -203,6 +267,7 @@ const Resume = () => {
 
       </div>
 
+      {/* <div className='w-screen overflow-hidden border relative'> */}
       <div className="rotate-45  w-[50px] h-[2000px] mx-auto left-[-800px] top-[-50%] absolute">
         {starsFall.map((star) => (
           <div
@@ -211,26 +276,26 @@ const Resume = () => {
             style={{
               animation: `fall 3s linear forwards, twinkle 5s infinite`,
               position: 'absolute',
-              top: `${Math.random() * 1000}%`,
-              left: `${Math.random() * 1000}%`,
+              top: `${Math.random() * 100}vh`, // ใช้ vh แทน %
+              left: `${Math.random() * 100}vw`, // ใช้ vw แทน %
 
             }}
           ></div>
         ))}
       </div>
+    {/* </div> */}
 
 
 
+      <div ref={animatedRef1} id="home" className=" mx-auto  w-screen  text-center md:py-20 py-60 lg:py-60 absolute z-10 ">
 
-      <div id="home" className=" mx-auto  w-screen  text-center md:py-20 py-60 lg:py-60 absolute z-10 ">
-      
 
-        <div   className=' flex lg:w-[800px]  mx-auto text-center justify-center mb-10 animated-textDown '>
+        <div className={`${animate1 && 'animated-textDown'} flex lg:w-[800px]  mx-auto text-center justify-center mb-10 `}>
           <h1 className=' text-2xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl me-3'>I want to be a</h1>
           <h1 className='text-2xl type-word text-[#F5A100] font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl'><span></span></h1>
         </div>
-        <p className="mb-8 text-sm animated-textUp font-normal text-gray-300 lg:text-xl px-8 lg:px-48">Hello<span className='animate-waving-hand'>👋🏻</span>, welcome to my personal information website. I hope you can get to know my basic information through this website. Very glad you visited.</p>
-        <div className="flex  animated-textUp  justify-center space-x-4 ">
+        <p className={`${animate1 && 'animated-textUp'} mb-8 text-sm  font-normal text-gray-300 lg:text-xl px-8 lg:px-48`}>Hello<span className='animate-waving-hand'>👋🏻</span>, welcome to my personal information website. I hope you can get to know my basic information through this website. Very glad you visited.</p>
+        <div className={`${animate1 && 'animated-textUp'} flex   justify-center space-x-4 `}>
           <ScrollLink to="profile" smooth={true} duration={500} className="inline-flex   items-center py-3 px-5 text-sm md:text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
             Let's go see
 
@@ -264,15 +329,15 @@ const Resume = () => {
 
 
       <div className='md:block md:h-[220px] h-[1000px] mt-[330px] w-screen bg-[#3D37B1] absolute z-0'></div>
-     
+
       <h1 id="profile" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl mt-[200px] md:mt-[-100px]  '></h1>
 
 
-      <div className=' w-screen px-10 text-white  md:mt-[130px]  mt-[300px] relative z-10 '>
+      <div ref={animatedRef2} className=' w-screen px-10 text-white  md:mt-[130px]  mt-[300px] relative z-10 '>
 
         <div className='md:flex  justify-center '>
           <div className=''>
-            <div  className="animated-textLeft relative z-10 text-center mt-[30px] ">
+            <div className={`${animate2 && 'animated-textLeft'} relative z-10 text-center mt-[30px] `}>
               <Image
                 src="/img/profile.png"
                 alt="image description"
@@ -286,14 +351,14 @@ const Resume = () => {
             </div>
           </div>
           <div className='grid md:ml-20  mt-[180px] md:mt-[0px] '>
-            <div className='animated-textDown w-[290px] md:w-[800px]'>
+            <div className={`${animate2 && 'animated-textDown'} w-[290px] md:w-[800px]`}>
               <h1 className=' font-extrabold tracking-tight w-[290px] md:w-[800px] text-center md:text-left leading-none md:text-5xl lg:text-6xl'>Chadaphorn Thongphutorn</h1>
               <p className=' md:w-[800px] text-sm md:text-base  w-[290px] md:text-left text-center mt-10 '>
                 I am looking for challenging work that uses technical skills in computer engineering. By working on front-end development I can learn quickly. Have a lot of responsibility Ready to adapt to learn new skills
               </p>
             </div>
             <div className=' mt-[50px]  w-[290px] md:w-[800px]'>
-              <div className=' mb-5  animated-textUp text-sm '>
+              <div className={`mb-5 ${animate2 && 'animated-textUp'} text-sm`}>
                 <div className='flex items-center '>
                   <FaFileAlt className='md:text-[30px] md:mr-5 mr-2 ' />
                   <h1 className="md:text-[40px] text-base font-semibold  text-gray-900 dark:text-white">Skills</h1>
@@ -327,7 +392,7 @@ const Resume = () => {
           </div>
         </div>
         <div className='text-center '>
-          <div className='md:mt-[50px] text-sm md:text-lg font-semibold animated-textUp md:flex justify-center items-center md:space-x-8 '>
+          <div className={`${animate2 && 'animated-textUp'} md:mt-[50px] text-sm md:text-lg font-semibold  md:flex justify-center items-center md:space-x-8 `}>
             <p className='flex items-center mt-2'>
               <BsTelephoneFill className='mr-3 ' />
               <a href='tel:+66993861226'>
@@ -361,15 +426,15 @@ const Resume = () => {
         className="animated-image absolute z-1 mt-[180px] md:right-40 right-10 md:w-[200px] w-[100px]"
       />
 
-      <h1 id="education" className='animated-textDown font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl mt-[50px] md:mt-[0px]'></h1>
+      <h1 id="education" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl mt-[50px] md:mt-[0px]'></h1>
 
-      <div className=' w-screen px-10 md:mx-auto md:px-40  md:mt-[100px]'>
+      <div ref={animatedRef3} className=' w-screen px-10 md:mx-auto md:px-40  md:mt-[100px]'>
 
-        <div className=' animated-textLeft flex items-center mt-[120px]  mb-5'>
+        <div className={`${animate3 && 'animated-textLeft'}  flex items-center mt-[120px]  mb-5`}>
           <FaUserGraduate className='md:text-[30px] md:mr-5 mr-2' />
           <h1 className="text-base md:text-[40px] font-semibold  text-white">Education</h1>
         </div>
-        <ol className="animated-textUp relative border-s  border-gray-200  ">
+        <ol className={`${animate3 && 'animated-textUp'} md:mt-[50px] relative border-s  border-gray-200  `}>
           <li className="mb-5 ms-4 ">
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
             <time className="mb-1 text-sm font-normal leading-none text-white ">2017 - 2020</time>
@@ -410,7 +475,7 @@ const Resume = () => {
 
       </div>
 
-      <div className='flex ml-[-100px] mt-[-100px] md:mt-[-60px] overflow-hidden '>
+      <div  className='flex ml-[-100px] mt-[-100px] md:mt-[-60px] overflow-hidden '>
         <Image
           src="/img/graduation.png"
           alt="image description"
@@ -433,77 +498,78 @@ const Resume = () => {
           className="  "
         />
       </div>
-      <h1 id="experience" className='animated-textDown font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl  mt-[0px]'></h1>
 
-      <div className=' w-screen  px-10 animated-textLeft flex items-center mb-5 mt-[80px] md:mt-[100px] md:px-40 '>
+      <h1  id="experience" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl  mt-[0px]'></h1>
 
-        <MdLibraryBooks className='md:text-[30px] md:mr-5 mr-2' />
-        <h1 className="text-base md:text-[40px] font-semibold  text-gray-900 dark:text-white">Experience</h1>
-      </div>
+        <div ref={animatedRef4} className={`${animate4 && 'animated-textLeft'}  w-screen  px-10  flex items-center mb-5 mt-[80px] md:mt-[100px] md:px-40 `}>
 
-      <div className=' text-sm md:text-base w-screen px-10 md:mx-auto  animated-textUp relative z-10'>
-        <div className=" text-black  md:mx-auto mt-[40px]">
-          <div className="bg-white mx-auto md:w-[800px] p-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Software Tester Intern</h2>
-            <p className='text-md md:text-xl font-bold'>Extosoft Co.,Ltd.</p>
-            <p className='text-sm md:text-base'>Has internship experience as a Software Tester</p>
-            <p className='text-md md:text-xl font-bold'>Responsibilities</p>
-            <div className='md:flex'>
-            <p className='text-sm md:text-base flex items-center '><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Manual Testing</span></p>
-            <p className='text-sm md:text-base ml-[23px]'>create test cases and run test.</p>
-            </div>
-            <div className='md:flex'>
-            <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Automated Testing</span>  </p>
-            <p className='text-sm md:text-base ml-[23px]'>functional testing according to Requirement.</p>
-            </div>
-            <div className='md:flex'>
-            <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Performance Testing</span> </p>
-            <p className='text-sm md:text-base ml-[23px]'>test the performance of the developed software.</p>
+          <MdLibraryBooks className='md:text-[30px] md:mr-5 mr-2' />
+          <h1 className="text-base md:text-[40px] font-semibold  text-gray-900 dark:text-white">Experience</h1>
+        </div>
+
+        <div className={`${animate4 && ' animated-textUp'} text-sm md:text-base w-screen px-10 md:mx-auto  relative z-10`}>
+          <div className=" text-black  md:mx-auto mt-[40px]">
+            <div className="bg-white mx-auto md:w-[800px] p-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Software Tester Intern</h2>
+              <p className='text-md md:text-xl font-bold'>Extosoft Co.,Ltd.</p>
+              <p className='text-sm md:text-base'>Has internship experience as a Software Tester</p>
+              <p className='text-md md:text-xl font-bold'>Responsibilities</p>
+              <div className='md:flex'>
+                <p className='text-sm md:text-base flex items-center '><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Manual Testing</span></p>
+                <p className='text-sm md:text-base ml-[23px]'>create test cases and run test.</p>
+              </div>
+              <div className='md:flex'>
+                <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Automated Testing</span>  </p>
+                <p className='text-sm md:text-base ml-[23px]'>functional testing according to Requirement.</p>
+              </div>
+              <div className='md:flex'>
+                <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Performance Testing</span> </p>
+                <p className='text-sm md:text-base ml-[23px]'>test the performance of the developed software.</p>
+              </div>
+
             </div>
 
-          </div>
+            <div className="text-sm md:text-base bg-white mx-auto md:w-[800px] p-4 mt-5 rounded-lg shadow-md transition-transform transform hover:scale-105">
+              <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Web application project</h2>
+              <p>Digital platform for safety officials, It is a responsive web application development for developing websites for safety personnel to use within the factory in place of notepads. It also incorporates the development of IOT, creating a button to report emergency situations.</p>
+              <p className='font-bold'>Responsibilities</p>
+              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2 ' /><span className='text-[#2A36AA] font-bold '>Design</span><br /></p>
+              <div className='ml-5'>
+                <p className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' /> Design the software architecture and system components.</p>
+                <span className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] md:mr-2 w-[30px] ml-[-7px] md:ml-0' />Create a database.<br /></span>
+                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop wireframes and mockups for the user interface (UI/UX).</span>
+              </div>
+              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Development (Coding)</span><br /></p>
+              <div className='ml-5 '>
+                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop both the front-end and back-end components.<br /></span>
+                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] ml-1 md:ml-0 mr-2 w-[30px]' />Implement functionalities and integrate with databases or external services.</span>
+              </div>
+              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Testing</span><br /></p>
+              <div className='ml-5'>
+                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Test components to make sure they work as intended.</span>
+              </div>
+              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Deployment</span><br /></p>
+              <div className='ml-5'>
+                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Address any issues or bugs discovered during the deployment phase.<br /></span>
+                <span className='flex items-center '><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Release the software to production once it passes all testing phases.</span>
+              </div>
+              <p className='flex items-center '><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Internet of Things (IoT)</span><br /></p>
+              <div className='ml-5'>
+                <p className='flex '><PiFlowerTulipBold className='text-[#CB4345] mr-2 mt-1 md:ml-[6px] w-[70px] md:w-[30px]' />Develop IOT as a button to report emergency situations Real-time notifications with socket io communicate information to websites developed via HTTP protocol.</p>
+              </div>
+              <Image
+                src="/img/web.png"
+                alt="image description"
+                width={5000}
+                height={1000}
+                className="rounded-b-lg  mt-5"
+              />
 
-          <div className="text-sm md:text-base bg-white mx-auto md:w-[800px] p-4 mt-5 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Web application project</h2>
-            <p>Digital platform for safety officials, It is a responsive web application development for developing websites for safety personnel to use within the factory in place of notepads. It also incorporates the development of IOT, creating a button to report emergency situations.</p>
-            <p className='font-bold'>Responsibilities</p>
-            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2 ' /><span className='text-[#2A36AA] font-bold '>Design</span><br /></p>
-            <div className='ml-5'>
-              <p className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' /> Design the software architecture and system components.</p>
-              <span className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] md:mr-2 w-[30px] ml-[-7px] md:ml-0' />Create a database.<br /></span>
-              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop wireframes and mockups for the user interface (UI/UX).</span>
             </div>
-            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Development (Coding)</span><br /></p>
-            <div className='ml-5 '>
-              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop both the front-end and back-end components.<br /></span>
-              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] ml-1 md:ml-0 mr-2 w-[30px]' />Implement functionalities and integrate with databases or external services.</span>
-            </div>
-            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Testing</span><br /></p>
-            <div className='ml-5'>
-              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Test components to make sure they work as intended.</span>
-            </div>
-            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Deployment</span><br /></p>
-            <div className='ml-5'>
-              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Address any issues or bugs discovered during the deployment phase.<br /></span>
-              <span className='flex items-center '><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Release the software to production once it passes all testing phases.</span>
-            </div>
-            <p className='flex items-center '><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Internet of Things (IoT)</span><br /></p>
-            <div className='ml-5'>
-              <p className='flex '><PiFlowerTulipBold className='text-[#CB4345] mr-2 mt-1 md:ml-[6px] w-[70px] md:w-[30px]' />Develop IOT as a button to report emergency situations Real-time notifications with socket io communicate information to websites developed via HTTP protocol.</p>
-            </div>
-            <Image
-              src="/img/web.png"
-              alt="image description"
-              width={5000}
-              height={1000}
-              className="rounded-b-lg  mt-5"
-            />
 
           </div>
 
         </div>
-
-      </div>
 
 
       <Image
