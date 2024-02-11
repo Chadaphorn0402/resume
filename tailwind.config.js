@@ -1,5 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  breakpoints: {
+    sm: '375px',
+    md: '670px',
+    lg: '768px',
+    xl: '1024px',
+  },
+  
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,5 +21,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [
+    require('tailwindcss-animated'),
+    require('tailwind-typewriter')({
+      wordsets: {
+          word: {
+              words: ['Front-End', 'Developer'],
+              delay: 1
+          }
+      }
+  })  ],};

@@ -2,6 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes fall {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
+
+@keyframes slideUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px); /* ปรับตามความต้องการ */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated-image {
+  animation: slideUpDown 4s infinite;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated-textUp {
+  animation: slideUp 2s; /* Removed 'infinite' */
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated-textDown {
+  animation: slideDown 2s; /* Removed 'infinite' */
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animated-textLeft {
+  animation: slideLeft 1s; /* Removed 'infinite' */
+}
+
+
+
+
+
+.animate-text {
+  position: relative;
+}
+
+.animate-text span::before {
+  content: "";
+  color: #F5A100;
+  animation: words-front-end 20s infinite;
+}
+
+.animate-text span::after {
+  content: "";
+  position: absolute;
+  height: 120%;
+  width: calc(100% + 8px);
+  background-color: #0E0E40;
+  border-left: 2px solid #F5A100;
+  right: -8px;
+  animation: cursor .8s infinite, typing 20s steps(9) infinite; /* Adjusted steps(6) to match the number of words */
+}
+
+@keyframes cursor {
+  to{
+    border-left: 2px solid #ff7f5000;
+  }
+}
+
+@keyframes words-front-end {
+  0%, 100% {
+    content: "Front-End";
+  }
+  25% {
+    content: "Front-End";
+  }
+  35% {
+    content: "Developer";
+  }
+  65% {
+    content: "Developer";
+  }
+  75% {
+    content: "Front-End";
+  }
+}
+
+@keyframes typing {
+  0%, 25%, 35%, 65%, 75%, 100% {
+    width: 0;
+  }
+  10%, 30%, 50%, 70%, 90% {
+    width: calc(100% + 8px);
+  }
+}
+
+
+@keyframes wave {
+  0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
+}
+
+.animate-waving-hand {
+  display: inline-block; /* ให้แสดงผลเป็น inline block */
+  animation: wave 2s linear infinite;
+}
+
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,14 +171,11 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
+  overflow-y: auto;  
+  overflow-x: hidden; 
 }
+
 
 @layer utilities {
   .text-balance {
