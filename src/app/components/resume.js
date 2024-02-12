@@ -362,7 +362,7 @@ const Resume = () => {
               <div className={`mb-5 ${animate2 && 'animated-textUp'} text-sm`}>
                 <div className='flex items-center '>
                   <FaFileAlt className='md:text-[30px] md:mr-5 mr-2 ' />
-                  <h1 className="md:text-[40px] text-base font-semibold  text-gray-900 dark:text-white">Skills</h1>
+                  <h1 className="md:text-[40px] text-base font-semibold  text-white">Skills</h1>
                 </div>
                 <p className='mb-2 mt-5'>Stack & Programming</p>
                 <div className='flex space-x-2 '>
@@ -505,7 +505,7 @@ const Resume = () => {
       <div ref={animatedRef4} className={`${animate4 && 'animated-textLeft'}  w-screen  px-10  flex items-center mb-5 mt-[80px] md:mt-[100px] md:px-40 `}>
 
         <MdLibraryBooks className='md:text-[30px] md:mr-5 mr-2' />
-        <h1 className="text-base md:text-[40px] font-semibold  text-gray-900 dark:text-white">Experience</h1>
+        <h1 className="text-base md:text-[40px] font-semibold  text-white">Experience</h1>
       </div>
 
       <div className={`${animate4 && ' animated-textUp'} text-sm md:text-base w-screen px-10 md:mx-auto  relative z-10`}>
