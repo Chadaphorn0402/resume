@@ -167,13 +167,13 @@ const Resume = () => {
 
 
   return (
-    <div className="bg-gradient-to-b from-[#0E0E3D] via-[#121355] to-[#2A36AA]  w-screen  text-white overflow-hidden">
+    <div className="bg-gradient-to-b from-[#0E0E3D] via-[#121355] to-[#2A36AA]  w-screen  text-white overflow-hidden  ">
 
-      <div className="  w-screen fixed z-50 top-0 left-0 right-0 lg:flex justify-end bg-[#0E0E3D] items-center border-b px-6 border-gray-200 dark:border-gray-700">
+      <div className="  w-screen  fixed z-50 top-0 left-0 right-0 lg:flex justify-center md:justify-end bg-[#0E0E3D] items-center border-b px-6 border-gray-200 dark:border-gray-700">
         <div>
 
-          <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-            <li className="me-2 cursor-pointer">
+          <ul className=" flex flex-wrap -mb-px text-sm font-medium text-center justify-center text-gray-500 dark:text-gray-400">
+            <li className="me-2 cursor-pointer  ">
               <ScrollLink to="home" smooth={true} duration={500}
 
                 className={`inline-flex items-center justify-center p-4 ${activeTab === '/1'
@@ -181,7 +181,7 @@ const Resume = () => {
                   : 'border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group'
                   }`}
               >
-                <AiFillHome className='text-[15px] mr-2' />
+                <AiFillHome className='text-[15px] md:mr-2 ' />
                 <span className='hidden md:block'>Home</span>
               </ScrollLink>
             </li>
@@ -189,7 +189,7 @@ const Resume = () => {
               <ScrollLink to="profile" smooth={true} duration={500}
                 className="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
               >
-                <IoPerson className='text-[15px] mr-2' />
+                <IoPerson className='text-[15px] md:mr-2 ' />
                 <span className='hidden md:block'>Profile</span>
               </ScrollLink>
             </li>
@@ -202,7 +202,7 @@ const Resume = () => {
                   }`}
                 aria-current="page"
               >
-                <FaUserGraduate className='text-[15px] mr-2' />
+                <FaUserGraduate className='text-[15px] md:mr-2' />
                 <span className='hidden md:block'>Education</span>
               </ScrollLink>
             </li>
@@ -211,7 +211,7 @@ const Resume = () => {
 
                 className="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
               >
-                <MdLibraryBooks className="text-[15px] mr-2" />
+                <MdLibraryBooks className="text-[15px] md:mr-2" />
 
                 <span className='hidden md:block'>Experience</span>
               </ScrollLink>
@@ -221,7 +221,7 @@ const Resume = () => {
 
                 className="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
               >
-                <FaFileAlt className="text-[15px] mr-2" />
+                <FaFileAlt className="text-[15px] md:mr-2" />
 
                 <span className='hidden md:block'>Skills</span>
               </ScrollLink>
@@ -268,7 +268,7 @@ const Resume = () => {
       </div>
 
       {/* <div className='w-screen overflow-hidden border relative'> */}
-      <div className="rotate-45  w-[50px] h-[2000px] mx-auto left-[-800px] top-[-50%] absolute">
+      <div className="rotate-45  w-[50px] h-[2000px]left-0 top-0 border">
         {starsFall.map((star) => (
           <div
             key={star.id}
@@ -283,7 +283,7 @@ const Resume = () => {
           ></div>
         ))}
       </div>
-    {/* </div> */}
+      {/* </div> */}
 
 
 
@@ -337,21 +337,22 @@ const Resume = () => {
 
         <div className='md:flex  justify-center '>
           <div className=''>
-            <div className={`${animate2 && 'animated-textLeft'} relative z-10 text-center mt-[30px] `}>
+            <div className={`${animate2 && 'animated-textLeft'} flex  justify-center mt-[30px] `}>
               <Image
-                src="/img/profile.png"
-                alt="image description"
-                width={300}
-                height={300}
-                className=" absolute z-10  md:left-[60px] left-[47px] w-[200px] md:w-[300px]"
+                  src="/img/profile.png"
+                  alt="image description"
+                  width={300}
+                  height={300}
+                  className="absolute z-10  mx-auto w-[200px] md:w-[300px]"
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl relative z-1  text-center px-4 md:px-6" style={{ WebkitTextStroke: '2px #F5A100', color: 'transparent' }}>
+
+              <h1 className="text-4xl  md:text-5xl lg:text-6xl relative z-1  text-center px-4 md:px-6" style={{ WebkitTextStroke: '2px #F5A100', color: 'transparent' }}>
                 NEVER<br /><span className='mr-[80px]'>ST</span><span>OP</span><br /><span className='mr-[90px]'>LEAR</span><span>NING</span>
               </h1>
             </div>
           </div>
-          <div className='grid md:ml-20  mt-[180px] md:mt-[0px] '>
-            <div className={`${animate2 && 'animated-textDown'} w-[290px] md:w-[800px]`}>
+          <div className='grid md:ml-20  mt-[180px] md:mt-[0px]'>
+            <div className={`${animate2 && 'animated-textDown'} w-[290px] md:w-[800px]  mx-auto`}>
               <h1 className=' font-extrabold tracking-tight w-[290px] md:w-[800px] text-center md:text-left leading-none md:text-5xl lg:text-6xl'>Chadaphorn Thongphutorn</h1>
               <p className=' md:w-[800px] text-sm md:text-base  w-[290px] md:text-left text-center mt-10 '>
                 I am looking for challenging work that uses technical skills in computer engineering. By working on front-end development I can learn quickly. Have a lot of responsibility Ready to adapt to learn new skills
@@ -464,8 +465,8 @@ const Resume = () => {
                 className="me-10"
               />
               <div className=''>
-                <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white">Bachelor of Engineering Program in Computer Engineering </h3>
-                <p className="md:text-base text-sm font-normal text-gray-500 dark:text-gray-300">Naresuan University<br />GPA : 3.37  Second-Class Honors</p>
+                <h3 className="md:text-lg text-base font-semibold  dtext-white">Bachelor of Engineering Program in Computer Engineering </h3>
+                <p className="md:text-base text-sm font-normal text-gray-300">Naresuan University<br />GPA : 3.37  Second-Class Honors</p>
               </div>
             </div>
           </li>
@@ -475,7 +476,7 @@ const Resume = () => {
 
       </div>
 
-      <div  className='flex ml-[-100px] mt-[-100px] md:mt-[-60px] overflow-hidden '>
+      <div className='flex ml-[-100px] mt-[-100px] md:mt-[-60px] overflow-hidden '>
         <Image
           src="/img/graduation.png"
           alt="image description"
@@ -499,77 +500,84 @@ const Resume = () => {
         />
       </div>
 
-      <h1  id="experience" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl  mt-[0px]'></h1>
+      <h1 id="experience" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl  mt-[0px]'></h1>
 
-        <div ref={animatedRef4} className={`${animate4 && 'animated-textLeft'}  w-screen  px-10  flex items-center mb-5 mt-[80px] md:mt-[100px] md:px-40 `}>
+      <div ref={animatedRef4} className={`${animate4 && 'animated-textLeft'}  w-screen  px-10  flex items-center mb-5 mt-[80px] md:mt-[100px] md:px-40 `}>
 
-          <MdLibraryBooks className='md:text-[30px] md:mr-5 mr-2' />
-          <h1 className="text-base md:text-[40px] font-semibold  text-gray-900 dark:text-white">Experience</h1>
-        </div>
+        <MdLibraryBooks className='md:text-[30px] md:mr-5 mr-2' />
+        <h1 className="text-base md:text-[40px] font-semibold  text-gray-900 dark:text-white">Experience</h1>
+      </div>
 
-        <div className={`${animate4 && ' animated-textUp'} text-sm md:text-base w-screen px-10 md:mx-auto  relative z-10`}>
-          <div className=" text-black  md:mx-auto mt-[40px]">
-            <div className="bg-white mx-auto md:w-[800px] p-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
-              <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Software Tester Intern</h2>
-              <p className='text-md md:text-xl font-bold'>Extosoft Co.,Ltd.</p>
-              <p className='text-sm md:text-base'>Has internship experience as a Software Tester</p>
-              <p className='text-md md:text-xl font-bold'>Responsibilities</p>
-              <div className='md:flex'>
-                <p className='text-sm md:text-base flex items-center '><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Manual Testing</span></p>
-                <p className='text-sm md:text-base ml-[23px]'>create test cases and run test.</p>
-              </div>
-              <div className='md:flex'>
-                <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Automated Testing</span>  </p>
-                <p className='text-sm md:text-base ml-[23px]'>functional testing according to Requirement.</p>
-              </div>
-              <div className='md:flex'>
-                <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Performance Testing</span> </p>
-                <p className='text-sm md:text-base ml-[23px]'>test the performance of the developed software.</p>
-              </div>
-
+      <div className={`${animate4 && ' animated-textUp'} text-sm md:text-base w-screen px-10 md:mx-auto  relative z-10`}>
+        <div className=" text-black  md:mx-auto mt-[40px]">
+          <div className="bg-white mx-auto md:w-[800px] p-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
+            <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Software Tester Intern</h2>
+            <div className="flex items-center justify-between">
+              <p className="text-md md:text-xl font-bold">Extosoft Co.,Ltd.</p>
+              <span className="text-[12px]">Apr2023 - Jun2023</span>
             </div>
-
-            <div className="text-sm md:text-base bg-white mx-auto md:w-[800px] p-4 mt-5 rounded-lg shadow-md transition-transform transform hover:scale-105">
-              <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Web application project</h2>
-              <p>Digital platform for safety officials, It is a responsive web application development for developing websites for safety personnel to use within the factory in place of notepads. It also incorporates the development of IOT, creating a button to report emergency situations.</p>
-              <p className='font-bold'>Responsibilities</p>
-              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2 ' /><span className='text-[#2A36AA] font-bold '>Design</span><br /></p>
-              <div className='ml-5'>
-                <p className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' /> Design the software architecture and system components.</p>
-                <span className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] md:mr-2 w-[30px] ml-[-7px] md:ml-0' />Create a database.<br /></span>
-                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop wireframes and mockups for the user interface (UI/UX).</span>
-              </div>
-              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Development (Coding)</span><br /></p>
-              <div className='ml-5 '>
-                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop both the front-end and back-end components.<br /></span>
-                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] ml-1 md:ml-0 mr-2 w-[30px]' />Implement functionalities and integrate with databases or external services.</span>
-              </div>
-              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Testing</span><br /></p>
-              <div className='ml-5'>
-                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Test components to make sure they work as intended.</span>
-              </div>
-              <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Deployment</span><br /></p>
-              <div className='ml-5'>
-                <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Address any issues or bugs discovered during the deployment phase.<br /></span>
-                <span className='flex items-center '><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Release the software to production once it passes all testing phases.</span>
-              </div>
-              <p className='flex items-center '><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Internet of Things (IoT)</span><br /></p>
-              <div className='ml-5'>
-                <p className='flex '><PiFlowerTulipBold className='text-[#CB4345] mr-2 mt-1 md:ml-[6px] w-[70px] md:w-[30px]' />Develop IOT as a button to report emergency situations Real-time notifications with socket io communicate information to websites developed via HTTP protocol.</p>
-              </div>
-              <Image
-                src="/img/web.png"
-                alt="image description"
-                width={5000}
-                height={1000}
-                className="rounded-b-lg  mt-5"
-              />
-
+            <p className='text-sm md:text-base'>Has internship experience as a Software Tester</p>
+            <p className='text-md md:text-xl font-bold'>Responsibilities</p>
+            <div className='md:flex'>
+              <p className='text-sm md:text-base flex items-center '><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Manual Testing</span></p>
+              <p className='text-sm md:text-base ml-[23px]'>create test cases and run test.</p>
+            </div>
+            <div className='md:flex'>
+              <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Automated Testing</span>  </p>
+              <p className='text-sm md:text-base ml-[23px]'>functional testing according to Requirement.</p>
+            </div>
+            <div className='md:flex'>
+              <p className='text-sm md:text-base flex items-center'><BsStars className='text-[#E2AC00] mr-2' /><span className='text-[#CB4345] font-bold mr-2'>Performance Testing</span> </p>
+              <p className='text-sm md:text-base ml-[23px]'>test the performance of the developed software.</p>
             </div>
 
           </div>
 
+          <div className="text-sm md:text-base bg-white mx-auto md:w-[800px] p-4 mt-5 rounded-lg shadow-md transition-transform transform hover:scale-105">
+            <h2 className="text-[18px] md:text-xl font-semibold mb-2 border-b-2 border-gray-400 pb-2">Web application project</h2>
+            <div className="flex items-center justify-between">
+              <p className="text-md md:text-xl font-bold">Graduation project</p>
+              <span className="text-[12px]">Jul2023 - Jan2023</span>
+            </div>
+            <p>Digital platform for safety officials, It is a responsive web application development for developing websites for safety personnel to use within the factory in place of notepads. It also incorporates the development of IOT, creating a button to report emergency situations.</p>
+            <p className='font-bold'>Responsibilities</p>
+            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2 ' /><span className='text-[#2A36AA] font-bold '>Design</span><br /></p>
+            <div className='ml-5'>
+              <p className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' /> Design the software architecture and system components.</p>
+              <span className='flex   items-center'><PiFlowerTulipBold className='text-[#CB4345] md:mr-2 w-[30px] ml-[-7px] md:ml-0' />Create a database.<br /></span>
+              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop wireframes and mockups for the user interface (UI/UX).</span>
+            </div>
+            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Development (Coding)</span><br /></p>
+            <div className='ml-5 '>
+              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Develop both the front-end and back-end components.<br /></span>
+              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] ml-1 md:ml-0 mr-2 w-[30px]' />Implement functionalities and integrate with databases or external services.</span>
+            </div>
+            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Testing</span><br /></p>
+            <div className='ml-5'>
+              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Test components to make sure they work as intended.</span>
+            </div>
+            <p className='flex items-center'><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Deployment</span><br /></p>
+            <div className='ml-5'>
+              <span className='flex items-center'><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Address any issues or bugs discovered during the deployment phase.<br /></span>
+              <span className='flex items-center '><PiFlowerTulipBold className='text-[#CB4345] mr-2 w-[30px]' />Release the software to production once it passes all testing phases.</span>
+            </div>
+            <p className='flex items-center '><BiSolidRightArrow className='text-[#E2AC00] mr-2' /><span className='text-[#2A36AA] font-bold'>Internet of Things (IoT)</span><br /></p>
+            <div className='ml-5'>
+              <p className='flex '><PiFlowerTulipBold className='text-[#CB4345] mr-2 mt-1 md:ml-[6px] w-[70px] md:w-[30px]' />Develop IOT as a button to report emergency situations Real-time notifications with socket io communicate information to websites developed via HTTP protocol.</p>
+            </div>
+            <Image
+              src="/img/web.png"
+              alt="image description"
+              width={5000}
+              height={1000}
+              className="rounded-b-lg  mt-5"
+            />
+
+          </div>
+
         </div>
+
+      </div>
 
 
       <Image
