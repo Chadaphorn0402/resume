@@ -328,7 +328,7 @@ const Resume = () => {
       </section>
 
 
-      <div className='md:block md:h-[220px] h-[1000px] mt-[330px] w-screen bg-[#3D37B1] absolute z-0'></div>
+      <div className='md:block md:h-[220px] h-[1000px] mt-[320px]  w-screen bg-[#3D37B1] absolute z-0'></div>
 
       <h1 id="profile" className=' font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl mt-[200px] md:mt-[-100px]  '></h1>
 
